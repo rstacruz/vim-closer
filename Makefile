@@ -17,7 +17,7 @@ vendor/vimrc: vendor/vader.vim
 
 vendor/vader.vim:
 	@mkdir -p ./vendor
-	@git clone https://github.com/junegunn/vader.vit.git ./vendor/vader.vim
+	@git clone https://github.com/junegunn/vader.vim.git ./vendor/vader.vim
 
 vendor/vim-endwise.vim:
 	@mkdir -p ./vendor
