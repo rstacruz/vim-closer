@@ -1,8 +1,6 @@
 # vim-closer
 
-Closes brackets. Perfect companion to [vim-endwise].
-
-Basically a more conservative version of [auto-pairs] that only works when you press enter.
+**Closes brackets.** Perfect companion to [vim-endwise]. Basically, a more conservative version of [auto-pairs] that only works when you press Enter.
 
 [![Status](http://img.shields.io/travis/rstacruz/vim-closer/master.svg)](https://travis-ci.org/rstacruz/vim-closer/ "See test builds")
 
