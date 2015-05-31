@@ -30,10 +30,9 @@ Expect (leaves braces alone):
 Given ruby (ruby):
   a = %w[
 Do (presing enter):
-  A\<Enter>|
+  A\<Enter>\<Esc>dd
 Expect (closes brackets):
   a = %w[
-  |
   ]
 
 Given css:
