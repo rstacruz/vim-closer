@@ -14,7 +14,7 @@
 Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It supports languages that have `(`, `[`, and `{` brackets.
 
 ```css
-.section {
+.section {⏎
 ```
 
 ```css
@@ -26,7 +26,7 @@ Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It suppo
 It tries to automatically figure out whatever braces were opened in the line. This is useful for, say, JavaScript where `});` is commonly seen.
 
 ```js
-describe(function () {
+describe(function () {⏎
 ```
 
 ```js
