@@ -1,7 +1,6 @@
 if exists("g:closer_autoloaded") | finish | endif
 let g:closer_autoloaded=1
 
-
 if maparg("<Plug>CloserClose") == ""
   inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
   imap <script> <Plug>CloserClose <SID>CloserClose
