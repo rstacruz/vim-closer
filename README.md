@@ -47,6 +47,12 @@ Plug 'rstacruz/vim-closer'
 
 <br>
 
+## By the way
+
+Do you edit CSS often? Of course you do. Let me help you make that [a better experience.](http://ricostacruz.com/vim-hyperstyle/)
+
+<br>
+
 ## Thanks
 
 **vim-closer** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
