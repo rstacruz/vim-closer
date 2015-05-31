@@ -28,7 +28,7 @@ endfunction
 function closer#close()
   let ln = line('.') - 1
   let line = getline(ln)
-  if ! col(ln) >= strlen(line) | return "" | endif
+  if col(ln) < strlen(line) | return "" | endif
 
   let closetag = s:get_closing(line)
   if closetag == '' | return "" | endif

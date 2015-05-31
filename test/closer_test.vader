@@ -1,0 +1,46 @@
+Execute (set soft tabs to 2 spaces):
+  set sts=2 sw=2 ex
+
+Given css (css):
+  .section {
+Do:
+  A\<Enter>|
+Expect (closes curly braces):
+  .section {
+    |
+  }
+
+Given javascript (js):
+  describe(function() {
+Do (pressing enter):
+  A\<Enter>|
+Expect (closes multiple braces):
+  describe(function() {
+    |
+  });
+
+Given css (css with balanced braces):
+  .section {}
+Do (presing enter):
+  A\<Enter>|
+Expect (leaves braces alone):
+  .section {}
+  |
+
+Given ruby (ruby):
+  a = %w[
+Do (presing enter):
+  A\<Enter>|
+Expect (closes brackets):
+  a = %w[
+  |
+  ]
+
+Given css:
+  .section {}
+Do (presing enter in the middle of the line):
+  $i\<Enter>|
+Expect (doesnt terminate brackets):
+  .section {
+  |
+  }
