@@ -14,10 +14,7 @@ function! closer#enable()
 
   if oldmap =~# 'CloserClose'
     " already mapped. maybe the user was playing with `set ft`
-  elseif oldmap =~# '<CR><Plug>' || oldmap =~# '^<C-R>'
-    " eg, endwise
-    exe "imap <CR> ".oldmap."<Plug>CloserClose"
-  elseif maparg('<CR>','i') != ""
+  elseif oldmap != ""
     exe "imap <CR> ".oldmap."<Plug>CloserClose"
   else
     imap  <CR> <CR><Plug>CloserClose
