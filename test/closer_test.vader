@@ -42,5 +42,4 @@ Do (presing enter in the middle of the line):
   $i\<Enter>|
 Expect (doesnt terminate brackets):
   .section {
-  |
-  }
+  |}

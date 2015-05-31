@@ -26,9 +26,11 @@ endfunction
 
 " Adds a closing bracket if needed.
 function closer#close()
+  " supress if it broke off a line (pressed enter not at the end)
+  if match(getline('.'), '^\s*$') == -1 | return '' | endif
+
   let ln = line('.') - 1
   let line = getline(ln)
-  if col(ln) < strlen(line) | return "" | endif
 
   let closetag = s:get_closing(line)
   if closetag == '' | return "" | endif
