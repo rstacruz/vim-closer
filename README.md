@@ -12,18 +12,30 @@ Basically a more conservative version of [auto-pairs] that only works when you p
 ## Install
 
 ```vim
-Plug 'rstacruz/vim-closer
+Plug 'rstacruz/vim-closer'
 ```
 
 <br>
 
 ## Use
 
+Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It supports languages that have `(`, `[`, and `{` brackets.
+
+```css
+.section {
+```
+
+```css
+.section {
+  |
+}
+```
+
+It tries to automatically figure out whatever braces were opened in the line. This is useful for, say, JavaScript where `});` is commonly seen.
+
 ```js
 describe(function () {
 ```
-
-Press enter:
 
 ```js
 describe(function () {
