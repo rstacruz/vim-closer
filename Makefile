@@ -1,16 +1,21 @@
 vim := /usr/bin/env vim
 
-test: vendor/vimrc
+test: test-plain test-endwise
+
+test-plain: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/*"
+
+test-endwise: vendor/vimrc
+	@env test_endwise=1 HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/* test/endwise/*"
 
 vim: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $<
 
-vendor/vimrc: vendor/vader.vim
+vendor/vimrc: vendor/vader.vim vendor/vim-endwise
 	@mkdir -p ./vendor
 	@echo "filetype off" > $@
 	@echo "set rtp+=vendor/vader.vim" >> $@
-	@echo "if has('\$$test_endwise') | set rtp+=vendor/vim-endwise | endif" >> $@
+	@echo "set rtp+=vendor/vim-endwise" >> $@
 	@echo "set rtp+=." >> $@
 	@echo "filetype plugin indent on" >> $@
 	@echo "syntax enable" >> $@
@@ -19,7 +24,7 @@ vendor/vader.vim:
 	@mkdir -p ./vendor
 	@git clone https://github.com/junegunn/vader.vim.git ./vendor/vader.vim
 
-vendor/vim-endwise.vim:
+vendor/vim-endwise:
 	@mkdir -p ./vendor
 	@git clone https://github.com/tpope/vim-endwise.git ./vendor/vim-endwise
 

@@ -1,0 +1,19 @@
+Execute:
+  set sts=2 sw=2 ex
+Given ruby:
+  class Foo
+Do:
+  A\<Enter>|
+Expect (endwise works):
+  class Foo
+    |
+  end
+
+Given ruby:
+  a = %w[
+Do:
+  A\<Enter>|
+Expect (expansion works):
+  a = %w[
+  |
+  ]
