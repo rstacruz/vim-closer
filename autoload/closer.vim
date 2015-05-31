@@ -12,10 +12,12 @@ function! closer#enable()
   if ! exists('b:closer_flags') | return | endif
   let b:closer = 1
 
-  if maparg('<CR>', 'i') =~# '<C-R>=.*closer#close'
-    " already mapped. does this happen?
+  if maparg('<CR>', 'i') =~# 'CloserClose'
+    " already mapped. maybe the user was playing with `set ft`
   elseif maparg('<CR>','i') =~ '<CR><Plug>'
     " eg, endwise
+    exe "imap <CR> ".maparg('<CR>','i')."<Plug>CloserClose"
+  elseif maparg('<CR>','i') != ""
     exe "imap <CR> ".maparg('<CR>','i')."<Plug>CloserClose"
   else
     imap  <CR> <CR><Plug>CloserClose
