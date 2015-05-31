@@ -11,14 +11,15 @@ endif
 function! closer#enable()
   if ! exists('b:closer_flags') | return | endif
   let b:closer = 1
+  let oldmap = maparg('<CR>', 'i')
 
-  if maparg('<CR>', 'i') =~# 'CloserClose'
+  if oldmap =~# 'CloserClose'
     " already mapped. maybe the user was playing with `set ft`
-  elseif maparg('<CR>','i') =~ '<CR><Plug>'
+  elseif oldmap =~# '<CR><Plug>' || oldmap =~# '^<C-R>'
     " eg, endwise
-    exe "imap <CR> ".maparg('<CR>','i')."<Plug>CloserClose"
+    exe "imap <CR> ".oldmap."<Plug>CloserClose"
   elseif maparg('<CR>','i') != ""
-    exe "imap <CR> ".maparg('<CR>','i')."<Plug>CloserClose"
+    exe "imap <CR> ".oldmap."<Plug>CloserClose"
   else
     imap  <CR> <CR><Plug>CloserClose
   endif
