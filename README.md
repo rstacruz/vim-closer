@@ -9,6 +9,30 @@ Basically a more conservative version of [auto-pairs] that only works when you p
 
 <br>
 
+## Install
+
+```vim
+Plug 'rstacruz/vim-closer
+```
+
+<br>
+
+## Use
+
+```js
+describe(function () {
+```
+
+Press enter:
+
+```js
+describe(function () {
+  |
+});
+```
+
+<br>
+
 ## Thanks
 
 **vim-closer** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
