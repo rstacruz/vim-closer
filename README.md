@@ -11,15 +11,7 @@ Basically a more conservative version of [auto-pairs] that only works when you p
 
 <br>
 
-## Install
-
-```vim
-Plug 'rstacruz/vim-closer'
-```
-
-<br>
-
-## Use
+## What
 
 Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It supports languages that have `(`, `[`, and `{` brackets.
 
@@ -43,6 +35,14 @@ describe(function () {
 describe(function () {
   |
 });
+```
+
+<br>
+
+## Install
+
+```vim
+Plug 'rstacruz/vim-closer'
 ```
 
 <br>
