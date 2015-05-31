@@ -1,21 +1,35 @@
 if exists("g:closer_autoloaded") | finish | endif
 let g:closer_autoloaded=1
 
+
+if maparg("<Plug>CloserClose") == ""
+  inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
+  imap <script> <Plug>CloserClose <SID>CloserClose
+endif
+
 " Enables closer for the current buffer
 function! closer#enable()
-  if exists('b:closer_flags')
-    let b:closer = 1
-    inoremap <CR> <C-R>=closer#close()<CR>
+  if ! exists('b:closer_flags') | return | endif
+  let b:closer = 1
+
+  if maparg('<CR>', 'i') =~# '<C-R>=.*closer#close'
+    " already mapped. does this happen?
+  elseif maparg('<CR>','i') =~ '<CR><Plug>'
+    " eg, endwise
+    exe "imap <CR> ".maparg('<CR>','i')."<Plug>CloserClose"
+  else
+    imap  <CR> <CR><Plug>CloserClose
   endif
 endfunction
 
-" Adds a closing bracket if needed
+" Adds a closing bracket if needed.
 function closer#close()
-  if ! s:is_at_eol() | return "\<Enter>" | endif
+  let ln = line('.') - 1
+  let line = getline(ln)
+  if ! col(ln) >= strlen(line) | return "" | endif
 
-  let line = getline('.')
   let closetag = s:get_closing(line)
-  if closetag == '' | return "\<Enter>" | endif
+  if closetag == '' | return "" | endif
 
   if s:use_semicolon(line) == 1
     let closetag = closetag . ';'
@@ -24,12 +38,12 @@ function closer#close()
   let tab = ''
   if match(b:closer_flags, 'i') != -1 | let tab = "\<Tab>" | endif
 
-  return "\<CR>" . closetag . "\<C-O>O" . tab
+  return "" . closetag . "\<C-O>O" . tab
 endfunction
 
 " Checks if a semicolon is needed for a given line
 function s:use_semicolon(line)
-  if ! b:closer | return 0 | endif
+  if ! exists('b:closer') | return 0 | endif
   if match(b:closer_flags, ';') == -1 | return 0 | endif
 
   " for javascript ('f'), don't semicolonize functions
@@ -75,8 +89,4 @@ function s:get_closing(line)
     endif
   endwhile
   return clo
-endfunction
-
-function s:is_at_eol()
-  return col('.') >= strlen(getline('.'))
 endfunction
