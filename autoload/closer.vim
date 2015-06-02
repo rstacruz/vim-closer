@@ -1,12 +1,15 @@
-" if exists("g:closer_autoloaded") | finish | endif
-" let g:closer_autoloaded=1
+if exists("g:closer_autoloaded") | finish | endif
+let g:closer_autoloaded=1
 
 if maparg("<Plug>CloserClose") == ""
   inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
   imap <script> <Plug>CloserClose <SID>CloserClose
 endif
 
-" Enables closer for the current buffer
+"
+" Enables closer for the current buffer.
+"
+
 function! closer#enable()
   if ! exists('b:closer_flags') | return | endif
   let b:closer = 1
@@ -21,7 +24,11 @@ function! closer#enable()
   endif
 endfunction
 
+"
 " Adds a closing bracket if needed.
+" Executed after pressing <CR>
+"
+
 function! closer#close()
   " supress if it broke off a line (pressed enter not at the end)
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
@@ -41,8 +48,11 @@ function! closer#close()
   return "\<Esc>a" .indent . closetag . "\<C-O>O\<Esc>a" . indent . "\<Tab>\<Esc>A"
 endfunction
 
+"
 " Returns the context of the function
 " simply returns whatever's on the previous level of indentation
+"
+
 function! s:get_context()
   let ln = line('.') - 1
   let indent = strlen(matchstr(getline(ln), '^\s*'))
@@ -55,13 +65,16 @@ function! s:get_context()
   return 0
 endfunction
 
+"
 " Checks if a semicolon is needed for a given line number
+"
+
 function! s:use_semicolon(ln)
-  " Only add semicolons if the `;` flag is on
+  " Only add semicolons if the `;` flag is on.
   if ! exists('b:closer') | return '' | endif
   if match(b:closer_flags, ';') == -1 | return '' | endif
 
-  " Only add semicolons if another has a semicolon.
+  " Only add semicolons if another line has a semicolon.
   " ..also, a hard-coded assumption that 'use strict' should be ignored,
   "   since it always requires a semicolon.
   let used_semi = search(';$', 'wn') > 0
@@ -75,7 +88,7 @@ function! s:use_semicolon(ln)
     return ''
   endif
 
-  " Don't add semicolons for context lines matching `no_semi_ctx`.
+  " Don't add semicolons for context lines matching `semi_ctx`.
   " This allows supressing semi's for those inside object literals
   let ctx = s:get_context()
   if ctx != '0'
@@ -86,6 +99,7 @@ function! s:use_semicolon(ln)
   return ';'
 endfunction
 
+"
 " Returns the closing tag for a given line
 "
 "     get_closing('describe(function() {')
@@ -94,6 +108,7 @@ endfunction
 "     get_closing('function x() {')
 "     => '}'
 "
+
 function! s:get_closing(line)
   let i = -1
   let clo = ''
