@@ -44,3 +44,30 @@ Do (presing enter in the middle of the line):
 Expect (doesnt terminate brackets):
   .section {
   |}
+
+Given css:
+  .x ({
+Do (presing enter):
+  A\<Enter>|
+Expect (figures out 2 braces in the correct order):
+  .x ({
+    |
+  })
+
+Given xdefaults:
+  x [{(
+Do (pressing enter):
+  A\<Enter>|
+Expect (figures out 3 braces in the correct order):
+  x [{(
+  |
+  )}]
+
+Given xdefaults:
+  x [(){(
+Do (pressing enter):
+  A\<Enter>|
+Expect (Discards superfluous braces):
+  x [(){(
+  |
+  )}]
