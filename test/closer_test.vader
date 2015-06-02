@@ -32,8 +32,17 @@ Expect (leaves braces alone):
 Given ruby (ruby):
   a = %w[
 Do (presing enter):
-  A\<Enter>\<Esc>dd
+  A\<Enter>|
 Expect (closes brackets):
+  a = %w[
+    |
+  ]
+
+Given ruby (ruby):
+  a = %w[
+Do (presing enter then esc):
+  A\<Enter>|\<Esc>dd
+Expect (escape works):
   a = %w[
   ]
 
@@ -60,7 +69,7 @@ Do (pressing enter):
   A\<Enter>|
 Expect (figures out 3 braces in the correct order):
   x [{(
-  |
+    |
   )}]
 
 Given xdefaults:
@@ -69,5 +78,5 @@ Do (pressing enter):
   A\<Enter>|
 Expect (Discards superfluous braces):
   x [(){(
-  |
+    |
   )}]

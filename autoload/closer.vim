@@ -28,13 +28,17 @@ function! closer#close()
 
   let ln = line('.') - 1
   let line = getline(ln)
+  let indent = matchstr(line, '^\s*')
 
   let closetag = s:get_closing(line)
   if closetag == '' | return "" | endif
 
   let closetag = closetag . s:use_semicolon(ln)
 
-  return "" . closetag . "\<C-O>O"
+  " <esc>a will go back to the 0.
+  " I dont know why <esc>A is needed at the end, but it seems to fix
+  " pressing escape after expansion.
+  return "\<Esc>a" .indent . closetag . "\<C-O>O\<Esc>a" . indent . "\<Tab>\<Esc>A"
 endfunction
 
 " Returns the context of the function

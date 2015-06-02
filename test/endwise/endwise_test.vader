@@ -12,7 +12,8 @@ Expect (endwise works):
 Given ruby:
   a = %w[
 Do:
-  A\<Enter>\<Esc>dd
+  A\<Enter>|
 Expect (expansion works):
   a = %w[
+    |
   ]
