@@ -10,6 +10,11 @@ http://github.com/rstacruz/vim-closer
 ==============================================================================
 CONFIGURATION                                             *closer-configuration*
 
+  Using configuration:~
+    See the plugin/closer.vim source for information on how to set
+    configuration flags for filetypes.
+    http://github.com/rstacruz/vim-closer/blob/master/plugin/closer.vim
+
   *b:closer_flags*
     A list of flags. Available flags:
 
