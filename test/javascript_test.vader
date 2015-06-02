@@ -1,0 +1,51 @@
+Execute:
+  set sts=2 sw=2 ex
+
+Given javascript (js):
+  hello();
+  describe(function() {
+Do (pressing enter):
+  GA\<Enter>|
+Expect (adds semicolon to describe):
+  hello();
+  describe(function() {
+    |
+  });
+
+
+Given javascript (js):
+  "use strict";
+  describe(function() {
+Do (pressing enter):
+  GA\<Enter>|
+Expect (ignores use strict directive):
+  "use strict";
+  describe(function() {
+    |
+  })
+
+Given javascript (js):
+  hello();
+  a = {
+    b: {
+Do (pressing enter):
+  GA\<Enter>|
+Expect (adds no semicolon on object literal):
+  hello();
+  a = {
+    b: {
+      |
+    }
+
+Given javascript (js):
+  hello();
+  class X {
+    fn() {
+Do (pressing enter):
+  GA\<Enter>|
+Expect (adds no semicolon on class methods):
+  hello();
+  class X {
+    fn() {
+      |
+    }

@@ -11,10 +11,12 @@ Expect (closes curly braces):
   }
 
 Given javascript (js):
+  hello();
   describe(function() {
 Do (pressing enter):
-  A\<Enter>|
+  GA\<Enter>|
 Expect (closes multiple braces):
+  hello();
   describe(function() {
     |
   });
