@@ -30,6 +30,8 @@ endfunction
 "
 
 function! closer#close()
+  if ! get(b:, 'closer') | return '' | endif
+
   " supress if it broke off a line (pressed enter not at the end)
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
