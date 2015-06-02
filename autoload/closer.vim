@@ -34,10 +34,7 @@ function! closer#close()
 
   let closetag = closetag . s:use_semicolon(ln)
 
-  let tab = ''
-  if match(b:closer_flags, 'i') != -1 | let tab = "\<Tab>" | endif
-
-  return "" . closetag . "\<C-O>O" . tab
+  return "" . closetag . "\<C-O>O"
 endfunction
 
 " Returns the context of the function
@@ -74,12 +71,11 @@ function! s:use_semicolon(ln)
 
   " for javascript ('f'), don't semicolonize if we're inside a class or obj
   " literal
-  if match(b:closer_flags, 'f') >= 0
-    let ctx = s:get_context()
-    if ctx != '0'
-      if match(ctx, ')\s*{$') == -1 | return '' | endif
-      if b:closer_no_semi_ctx != '0' && match(ctx, b:closer_no_semi_ctx) > -1 | return '' | endif
-    endif
+  let ctx = s:get_context()
+  if ctx != '0'
+    if match(ctx, ')\s*{$') == -1 | return '' | endif
+    if b:closer_no_semi_ctx_neg != '0' && match(ctx, b:closer_no_semi_ctx_neg) == -1 | return '' | endif
+    if b:closer_no_semi_ctx != '0' && match(ctx, b:closer_no_semi_ctx) > -1 | return '' | endif
   endif
 
   return ';'

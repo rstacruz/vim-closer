@@ -6,7 +6,7 @@ augroup closer
     \ let b:closer_no_semi_ctx_neg = 0
 
   au FileType javascript
-    \ let b:closer_flags = '([{;f' |
+    \ let b:closer_flags = '([{;' |
     \ let b:closer_no_semi = '^\s*(function|class)' |
     \ let b:closer_no_semi_ctx = 'class' |
     \ let b:closer_no_semi_ctx_neg = ')\s*{$'
