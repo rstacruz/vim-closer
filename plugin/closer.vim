@@ -12,8 +12,8 @@ augroup closer
     \ let b:closer_flags = '([{'
   au FileType css,scss,less,stylus
     \ let b:closer_flags = '([{'
-  au FileType c,cpp,xdefaults,objc
-    \ let b:closer_flags = '([{'
+  au FileType c,cpp,xdefaults,objc,java
+    \ let b:closer_flags = '([{;'
 
   autocmd FileType * call closer#enable()
 augroup END
