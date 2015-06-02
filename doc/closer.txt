@@ -15,6 +15,9 @@ CONFIGURATION                                             *closer-configuration*
     configuration flags for filetypes.
     http://github.com/rstacruz/vim-closer/blob/master/plugin/closer.vim
 
+  *b:closer*
+    Enables vim-closer behavior. Set this to `0` to temprarily disable.
+
   *b:closer_flags*
     A list of flags. Available flags:
 
