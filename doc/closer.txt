@@ -1,0 +1,33 @@
+*closer.txt*  automatically close brackets
+
+==============================================================================
+INTRODUCTION                                                            *closer*
+
+*closer* automatically closes brackets for you.
+
+http://github.com/rstacruz/vim-closer
+
+==============================================================================
+CONFIGURATION                                             *closer-configuration*
+
+  *b:closer_flags*
+    A list of flags. Available flags:
+
+       `([{`  close these braces
+       `;`    use semicolons
+
+  *b:closer_no_semi*
+    When the line matches this regexp, don't add semicolons.
+
+    In JavaScript, this allows you to not add semicolons for `function(){...}`
+    or `class` `X` `{...}`.
+
+  *b:closer_semi_ctx*
+    Only consider semicolons when the context line matches this regexp.
+
+    The context is the previous line that is indented higher than the current
+    line. In JavaScript, this allows you to only add semicolons in the
+    function context.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
