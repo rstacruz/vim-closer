@@ -35,7 +35,7 @@ describe('test', function () {
 })
 ```
 
-Semicolons are automatically added if it makes sense, and only if another line in the document ends in `;`.)
+Semicolons are automatically added if it makes sense, and only if another line in the buffer ends in `;`.
 
 ```js
 var x = 1;
