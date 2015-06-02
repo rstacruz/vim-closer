@@ -49,3 +49,14 @@ Expect (adds no semicolon on class methods):
     fn() {
       |
     }
+
+Given javascript (js):
+  hello();
+  a = {
+Do (pressing enter):
+  GA\<Enter>|
+Expect (adds semicolons to object literal):
+  hello();
+  a = {
+    |
+  };

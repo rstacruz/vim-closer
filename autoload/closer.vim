@@ -53,24 +53,26 @@ endfunction
 
 " Checks if a semicolon is needed for a given line number
 function! s:use_semicolon(ln)
+  " Only add semicolons if the `;` flag is on
   if ! exists('b:closer') | return '' | endif
   if match(b:closer_flags, ';') == -1 | return '' | endif
 
-  " was semicolons ever used anywhere?
-  " also, hard-coded assumption that 'use strict' should be ignored, since it
-  " always requires a semicolon
+  " Only add semicolons if another has a semicolon.
+  " ..also, a hard-coded assumption that 'use strict' should be ignored,
+  "   since it always requires a semicolon.
   let used_semi = search(';$', 'wn') > 0
   if used_semi > 0 && used_semi == search('"use strict";$','wn') | return '' | endif
   if used_semi == "0" | return '' | endif
 
-  " Account for ignore tags
+  " Don't add semicolons for lines matching `no_semi`.
+  " This allows `function(){ .. }` and `class X { .. }` to not get semicolons.
   let line = getline(a:ln)
   if b:closer_no_semi != '0' && match(line, b:closer_no_semi) > -1
     return ''
   endif
 
-  " for javascript ('f'), don't semicolonize if we're inside a class or obj
-  " literal
+  " Don't add semicolons for context lines matching `no_semi_ctx`.
+  " This allows supressing semi's for those inside object literals
   let ctx = s:get_context()
   if ctx != '0'
     if match(ctx, ')\s*{$') == -1 | return '' | endif

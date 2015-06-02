@@ -26,11 +26,25 @@ Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It suppo
 It tries to automatically figure out whatever braces were opened in the line. This is useful for, say, JavaScript where `});` is commonly seen.
 
 ```js
-describe(function () {⏎
+describe('test', function () {⏎
 ```
 
 ```js
-describe(function () {
+describe('test', function () {
+  |
+})
+```
+
+Semicolons are automatically added if it makes sense, and only if another line in the document ends in `;`.)
+
+```js
+var x = 1;
+setImmediate(function () {⏎
+```
+
+```js
+var x = 1;
+setImmediate(function () {
   |
 });
 ```

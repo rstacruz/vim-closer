@@ -6,7 +6,7 @@ test-plain: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/*"
 
 test-endwise: vendor/vimrc
-	@env test_endwise=1 HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/* test/endwise/*"
+	@env test_endwise=1 HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/endwise/* test/*"
 
 vim: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $<
