@@ -60,18 +60,16 @@ function! s:use_semicolon(ln)
   if match(b:closer_flags, ';') == -1 | return '' | endif
 
   " was semicolons ever used anywhere?
+  " also, hard-coded assumption that 'use strict' should be ignored, since it
+  " always requires a semicolon
   let used_semi = search(';$', 'wn') > 0
   if used_semi > 0 && used_semi == search('"use strict";$','wn') | return '' | endif
   if used_semi == "0" | return '' | endif
 
+  " Account for ignore tags
   let line = getline(a:ln)
-
-  " for javascript ('f'), don't semicolonize functions
-  if match(b:closer_flags, 'f') >= 0 && match(line, '^\s*function') > -1
-      return ''
-  " don't semicolonize classes
-  elseif match(b:closer_flags, 'c') >= 0 && match(line, '^\s*class') > -1
-      return ''
+  if b:closer_no_semi != '0' && match(line, b:closer_no_semi) > -1
+    return ''
   endif
 
   " for javascript ('f'), don't semicolonize if we're inside a class or obj
@@ -80,7 +78,7 @@ function! s:use_semicolon(ln)
     let ctx = s:get_context()
     if ctx != '0'
       if match(ctx, ')\s*{$') == -1 | return '' | endif
-      if match(ctx, 'class') > -1 | return '' | endif
+      if b:closer_no_semi_ctx != '0' && match(ctx, b:closer_no_semi_ctx) > -1 | return '' | endif
     endif
   endif
 
