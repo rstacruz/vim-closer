@@ -75,9 +75,8 @@ function! s:use_semicolon(ln)
   " This allows supressing semi's for those inside object literals
   let ctx = s:get_context()
   if ctx != '0'
-    if match(ctx, ')\s*{$') == -1 | return '' | endif
-    if b:closer_no_semi_ctx_neg != '0' && match(ctx, b:closer_no_semi_ctx_neg) == -1 | return '' | endif
-    if b:closer_no_semi_ctx != '0' && match(ctx, b:closer_no_semi_ctx) > -1 | return '' | endif
+    " if context is not a js function, don't semicolonize
+    if b:closer_semi_ctx != '0' && match(ctx, b:closer_semi_ctx) == -1 | return '' | endif
   endif
 
   return ';'
