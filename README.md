@@ -2,6 +2,12 @@
 
 **Closes brackets.** Perfect companion to [vim-endwise]. Basically, a more conservative version of [auto-pairs] that only works when you press Enter.
 
+----
+
+![](https://raw.githubusercontent.com/rstacruz/vim-closer/gh-pages/closer.gif)
+
+----
+
 [![Status](http://img.shields.io/travis/rstacruz/vim-closer/master.svg)](https://travis-ci.org/rstacruz/vim-closer/ "See test builds")
 
 [auto-pairs]: https://github.com/jiangmiao/auto-pairs
