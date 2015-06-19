@@ -8,17 +8,11 @@ augroup closer
   au FileType javascript
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{;' |
-    \ let b:closer_no_semi = '^\s*(function|class|if|else)' |
+    \ let b:closer_no_semi = '^\s*\(function\|class\|if\|else\)' |
     \ let b:closer_semi_ctx = ')\s*{$'
-  au FileType ruby,go
+  au FileType ruby,go,c,cpp,xdefaults,objc,java,css,scss,less,stylus
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{'
-  au FileType css,scss,less,stylus
-    \ let b:closer = 1 |
-    \ let b:closer_flags = '([{'
-  au FileType c,cpp,xdefaults,objc,java
-    \ let b:closer = 1 |
-    \ let b:closer_flags = '([{;'
 
   autocmd FileType * call closer#enable()
 augroup END
