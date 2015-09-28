@@ -1,15 +1,15 @@
-vim := /usr/bin/env vim
+vim := vim
 
 test: test-plain test-endwise
 
 test-plain: vendor/vimrc
-	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/*"
+	@echo env HOME="$(shell pwd)/vendor" ${vim} -Nu $< +"Vader! test/*"
 
 test-endwise: vendor/vimrc
-	@env test_endwise=1 HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/endwise/* test/*"
+	@env test_endwise=1 HOME="$(shell pwd)/vendor" ${vim} -Nu $< +"Vader! test/endwise/* test/*"
 
 vim: vendor/vimrc
-	@env HOME=$(shell pwd)/vendor ${vim} -Nu $<
+	@env HOME="$(shell pwd)/vendor" ${vim} -Nu $<
 
 vendor/vimrc: vendor/vader.vim vendor/vim-endwise
 	@mkdir -p ./vendor

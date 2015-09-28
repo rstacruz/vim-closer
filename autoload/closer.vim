@@ -77,10 +77,7 @@ function! s:use_semicolon(ln)
   if match(b:closer_flags, ';') == -1 | return '' | endif
 
   " Only add semicolons if another line has a semicolon.
-  " ..also, a hard-coded assumption that 'use strict' should be ignored,
-  "   since it always requires a semicolon.
   let used_semi = search(';$', 'wn') > 0
-  if used_semi > 0 && used_semi == search('"use strict";$','wn') | return '' | endif
   if used_semi == "0" | return '' | endif
 
   " Don't add semicolons for lines matching `no_semi`.

@@ -12,18 +12,6 @@ Expect (adds semicolon to describe):
     |
   });
 
-
-Given javascript (js):
-  "use strict";
-  describe(function() {
-Do (pressing enter):
-  GA\<Enter>|
-Expect (ignores use strict directive):
-  "use strict";
-  describe(function() {
-    |
-  })
-
 Given javascript (js):
   hello();
   a = {
