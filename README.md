@@ -59,6 +59,10 @@ setImmediate(function () {
 
 ## Install
 
+When using [vim-plug], add this to your `~/.vimrc`:
+
+[vim-plug]: https://github.com/junegunn/vim-plug
+
 ```vim
 Plug 'rstacruz/vim-closer'
 ```
