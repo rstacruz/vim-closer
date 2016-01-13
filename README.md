@@ -17,7 +17,7 @@
 
 ## What
 
-Closing are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It supports languages that have `(`, `[`, and `{` brackets.
+Closings are automatically inserted after pressing <kbd>Enter ⏎</kbd>. It supports languages that have `(`, `[`, and `{` brackets.
 
 ```css
 .section {⏎
