@@ -3,7 +3,7 @@
 ==============================================================================
 INTRODUCTION                                                            *closer*
 
-*closer* automatically closes brackets for you.
+|closer| automatically closes brackets for you.
 
 http://github.com/rstacruz/vim-closer
 
