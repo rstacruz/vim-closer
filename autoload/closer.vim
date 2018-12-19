@@ -118,17 +118,14 @@ function! s:get_closing(line)
     if ch == '{'
       let clo = '}' . clo
     elseif ch == '}'
-      if clo[0] != '}' | return '' | endif
       let clo = clo[1:]
     elseif ch == '('
       let clo = ')' . clo
     elseif ch == ')'
-      if clo[0] != ')' | return '' | endif
       let clo = clo[1:]
     elseif ch == '['
       let clo = ']' . clo
     elseif ch == ']'
-      if clo[0] != ']' | return '' | endif
       let clo = clo[1:]
     endif
   endwhile
