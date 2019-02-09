@@ -1,4 +1,5 @@
 *closer.txt*  automatically close brackets
+*vim-closer*
 
 ==============================================================================
 INTRODUCTION                                                            *closer*
