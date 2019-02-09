@@ -83,7 +83,8 @@ function! s:use_semicolon(ln)
   " Don't add semicolons for lines matching `no_semi`.
   " This allows `function(){ .. }` and `class X { .. }` to not get semicolons.
   let line = getline(a:ln)
-  if b:closer_no_semi != '0' && match(line, b:closer_no_semi) > -1
+  let prevline = getline(a:ln - 1)
+  if b:closer_no_semi != '0' && (match(line, b:closer_no_semi) > -1 || match(prevline, b:closer_no_semi) > -1)
     return ''
   endif
 
