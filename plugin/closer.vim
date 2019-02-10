@@ -19,7 +19,7 @@ augroup closer
   au FileType php
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{;' |
-    \ let b:closer_no_semi = '\s*\(function\|class\|if\|else\|for\|try\)' |
+    \ let b:closer_no_semi = '\s*\(function\s\+.\+(\|class\|if\|else\|for\|try\)' |
     \ let b:closer_semi_ctx = '\s*{$' |
     \ let b:closer_semi_check_top = 1
 
