@@ -15,12 +15,14 @@ function! closer#enable()
   let b:closer = 1
   let oldmap = maparg('<CR>', 'i')
 
-  if oldmap =~# 'CloserClose'
-    " already mapped. maybe the user was playing with `set ft`
-  elseif oldmap != ""
-    exe "imap <CR> ".oldmap."<Plug>CloserClose"
-  else
-    imap  <CR> <CR><Plug>CloserClose
+  if !exists('g:closer_no_mappings')
+	  if oldmap =~# 'CloserClose'
+		" already mapped. maybe the user was playing with `set ft`
+	  elseif oldmap != ""
+		exe "imap <CR> ".oldmap."<Plug>CloserClose"
+	  else
+		imap  <CR> <CR><Plug>CloserClose
+	  endif
   endif
 endfunction
 
