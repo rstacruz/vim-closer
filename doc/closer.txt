@@ -11,6 +11,17 @@ http://github.com/rstacruz/vim-closer
 ==============================================================================
 CONFIGURATION                                             *closer-configuration*
 
+  *g:closer_no_mappings*
+    Set this to `1` to suppress vim-closer's keybindings (default `null`). Use
+    this when using with other plugins that might also rely on binding `<CR>`.
+
+    When set to `1`, this requires setting bindings like so:
+>
+      imap <CR> <CR><Plug>CloserClose
+<
+==============================================================================
+BUFFER CONFIGURATION                               *closer-buffer-configuration*
+
   Using configuration:~
     See the plugin/closer.vim source for information on how to set
     configuration flags for filetypes.
