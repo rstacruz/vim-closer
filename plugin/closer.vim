@@ -12,7 +12,7 @@ augroup closer
     \ let b:closer_no_semi = '^\s*\(function\|class\|if\|else\)' |
     \ let b:closer_semi_ctx = ')\s*{$'
 
-  au FileType c,cpp,css,elixir,go,java,javacc,json,less,objc,puppet,python,ruby,rust,scss,sh,stylus,xdefaults,zsh,terraform,solidity
+  au FileType c,cpp,css,elixir,go,java,javacc,json,less,lua,objc,puppet,python,ruby,rust,scss,sh,solidity,stylus,terraform,xdefaults,zsh
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{'
 
