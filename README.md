@@ -2,6 +2,8 @@
 
 **Closes brackets.** Perfect companion to [vim-endwise]. Basically, a more conservative version of [auto-pairs] that only works when you press Enter.
 
+> NB: This plugin is known to have issues when used with COQ.nvim. See [#37](https://github.com/rstacruz/vim-closer/issues/37).
+
 ----
 
 ![](https://raw.githubusercontent.com/rstacruz/vim-closer/gh-pages/closer.gif)
