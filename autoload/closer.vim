@@ -1,11 +1,17 @@
 if exists("g:closer_autoloaded") | finish | endif
 let g:closer_autoloaded=1
 
+if maparg("<Plug>CloserClose") == ""
+  inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
+  imap <script> <Plug>CloserClose <SID>CloserClose
+endif
+
 "
 " Enables closer for the current buffer.
 "
 
 function! closer#enable()
+  " Based on tpope's vim-eunuch <CR> mapping function
   if ! exists('b:closer_flags') | return | endif
   let b:closer = 1
   let oldmap = maparg('<CR>', 'i', 0, 1)
@@ -15,7 +21,6 @@ function! closer#enable()
     return
   endif
 
-  inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
   if get(oldmap, 'expr')
     exe 'imap <script><silent><expr> <CR> closer#close(' . rhs . ')'
   elseif rhs =~? '^<cr>' && rhs !~? '<plug>'
