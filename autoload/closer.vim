@@ -1,11 +1,6 @@
 if exists("g:closer_autoloaded") | finish | endif
 let g:closer_autoloaded=1
 
-if maparg("<Plug>CloserClose") == ""
-  inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
-  imap <script> <Plug>CloserClose <SID>CloserClose
-endif
-
 "
 " Enables closer for the current buffer.
 "
@@ -20,6 +15,7 @@ function! closer#enable()
     return
   endif
 
+  inoremap <silent> <SID>CloserClose <C-R>=closer#close()<CR>
   if get(oldmap, 'expr')
     exe 'imap <script><silent><expr> <CR> closer#close(' . rhs . ')'
   elseif rhs =~? '^<cr>' && rhs !~? '<plug>'
@@ -29,16 +25,6 @@ function! closer#enable()
   elseif empty(rhs)
     imap <script><silent><expr> <CR> closer#close("\r")
   endif
-
-"   if !exists('g:closer_no_mappings')
-"     if get(oldmap, 'rhs') =~# 'CloserClose'
-"       return
-"     elseif oldmap != ""
-"       exe "imap <CR> ".oldmap."<Plug>CloserClose"
-"     else
-"       imap  <CR> <CR><Plug>CloserClose
-"     endif
-"   endif
 endfunction
 
 "
