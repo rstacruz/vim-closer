@@ -11,18 +11,24 @@ endif
 "
 
 function! closer#enable()
+  " Based on tpope's vim-eunuch <CR> mapping function
   if ! exists('b:closer_flags') | return | endif
   let b:closer = 1
-  let oldmap = maparg('<CR>', 'i')
+  let oldmap = maparg('<CR>', 'i', 0, 1)
+  let rhs = substitute(get(oldmap, 'rhs', ''), '\c<sid>', '<SNR>' . get(oldmap, 'sid') . '_', 'g')
 
-  if !exists('g:closer_no_mappings')
-	  if oldmap =~# 'CloserClose'
-		" already mapped. maybe the user was playing with `set ft`
-	  elseif oldmap != ""
-		exe "imap <CR> ".oldmap."<Plug>CloserClose"
-	  else
-		imap  <CR> <CR><Plug>CloserClose
-	  endif
+  if get(g:, 'closer_no_mappings') || rhs =~# 'CloserClose'
+    return
+  endif
+
+  if get(oldmap, 'expr')
+    exe 'imap <script><silent><expr> <CR> closer#close(' . rhs . ')'
+  elseif rhs =~? '^<cr>' && rhs !~? '<plug>'
+    exe 'imap <silent><script> <CR>' rhs . '<SID>CloserClose'
+  elseif rhs =~? '^cr'
+    exe 'imap <silent> <CR>' rhs . '<SID>CloserClose'
+  elseif empty(rhs)
+    imap <script><silent><expr> <CR> closer#close("\r")
   endif
 endfunction
 
@@ -31,7 +37,12 @@ endfunction
 " Executed after pressing <CR>
 "
 
-function! closer#close()
+function! closer#close(...)
+  " tpope madness to play nicely with other plugins' <CR> mappings
+  if a:0 && type(a:1) == type('')
+    return a:1 . (a:1 =~# "\r" && empty(&buftype) ? "\<C-R>=closer#close()\r" : "")
+  endif
+
   if ! get(b:, 'closer') | return '' | endif
 
   " supress if it broke off a line (pressed enter not at the end)
