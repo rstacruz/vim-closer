@@ -17,7 +17,7 @@ function! closer#enable()
   let oldmap = maparg('<CR>', 'i', 0, 1)
   let rhs = substitute(get(oldmap, 'rhs', ''), '\c<sid>', '<SNR>' . get(oldmap, 'sid') . '_', 'g')
 
-  if get(g:, 'closer_no_mappings') || rhs =~# 'CloserClose'
+  if get(g:, 'closer_no_mappings') || rhs =~# 'CloserClose' || rhs =~# 'closer#close'
     return
   endif
 
