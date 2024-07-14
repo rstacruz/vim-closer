@@ -16,6 +16,10 @@ augroup closer
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{'
 
+  au FileType hare
+    \ let b:closer = 1 |
+    \ let b:closer_flags = '([{;'
+
   au FileType php
     \ let b:closer = 1 |
     \ let b:closer_flags = '([{;' |
